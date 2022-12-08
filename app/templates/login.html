@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6" style="padding-top: 20px;">
+        <div class="card login-register-box" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <div class="logReg-btns">
+                    <button class="logReg-btn loginBtn">Login</button>
+                    <button class="logReg-btn registerBtn">Register</button>
+                    <button class="moveBtn">Login</button>
+                </div>
+                <form action="" method="post" name="register" class="registerForm hideForm">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="notification is-danger">
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                    {% endwith %}
+                    {{ form.hidden_tag() }}
+                    <div class="form-outline mb-4">
+                        {{ form.username.label }}
+                        {{ form.username(class_="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ form.email.label }}
+                        {{ form.email(class_="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ form.password.label }}
+                        {{ form.password(class_="form-control form-control-lg") }}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" value="Register" class="btn btn-pink btn-block btn-lg gradient-custom-4 text-body">
+                    </div>
+                </form>
+                <form action="" method="post" name="login" class="loginForm">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="notification is-danger">
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                    {% endwith %}
+                    <div class="form-outline mb-4">
+                        {{ loginForm.email.label }}
+                        {{ loginForm.email(class_="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ loginForm.password.label }}
+                        {{ loginForm.password(class_="form-control form-control-lg") }}
+                    </div>
+                    <div class="form-outline mb-4">
+                        {{ loginForm.remember.label }}
+                        {{ loginForm.remember }}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" value="Login" class="btn btn-pink btn-block btn-lg gradient-custom-4 text-body">
+                    </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../static/logReg-buttons.js"></script>
+{% endblock %}
+

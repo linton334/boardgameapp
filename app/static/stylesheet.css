@@ -1,0 +1,226 @@
+.bg-pink{
+    background-color: #df5f5a;
+}
+
+.logo{
+  width: 5%;
+  height: 5%;
+}
+
+*{
+    font-family: serif;
+}
+
+.btn-pink{
+  background-color: #df5f5a;
+  outline: none;
+  border: none;
+}
+
+.btn-pink:hover{
+  background-color: #c54742;
+}
+
+.btn-orange{
+  background-color: #8d8d8d;
+  border-radius: 50px;
+  width: 40px;
+  float: right;
+}
+
+.btn-orange:hover{
+  background-color: #DFA25A;
+  border-radius: 50px;
+  width: 40px;
+  float: right;
+}
+
+.login-register-box{
+  box-shadow: rgba(0, 0, 0, 0.15)0px 2px 8px;
+}
+
+/*Signup/Login seletor buttons*/
+.logReg-btns{
+  background-color: #df5f5a;
+  margin-bottom: 2em; 
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.09)0px 3px 12px;
+}
+
+.logReg-btn{
+  padding: 1em;
+  width: 50%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-radius: 50px;
+  color:#fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.moveBtn{
+  position:absolute;
+  width: 50%;
+  height: 85%;
+  margin: 3px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  background-color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.1)0px 4px 12px;
+  transform: translateX(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.rightBtn{
+  transform: translateX(98%);
+  transition: all 0.2s ease-in-out;
+}
+
+.hideForm{
+  display: none !important;
+}
+
+.registerForm{
+  display: block;
+}
+
+.loginForm{
+  display: block;
+}
+
+.card{
+  flex-direction: row;
+}
+
+.gameResult-box{
+  box-shadow: rgba(0, 0, 0, 0.15)0px 2px 8px;
+  padding: 10px;
+}
+
+.gameResult-box img{
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.line{
+  width: 0 !important;
+  height: 100%;
+  border-right: 2px solid #df5f5a;
+  min-width: 0px !important;
+}
+
+.results{
+  width: 100%;
+}
+.Hresults{
+  border: 2px solid #df5f5a;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.15)0px 2px 8px;
+}
+
+.results tr td:not(.line){
+  font-size:11pt;
+  text-align: left;
+  padding-left:10px;
+  padding-right: 10px;
+}
+
+.Hresults tr th{
+  font-weight:600;
+  font-size: medium;
+  text-align: center;
+  background-color: #fff;
+}
+
+.gameNum{
+  width: 2vw;
+}
+
+.img{
+  width: 80px;
+}
+
+.Himg{
+  width: 100px;
+}
+
+.title{
+  min-width: 115px;
+  width: 20vw;
+}
+
+.Htitle{
+  min-width: 115px;
+  width: 19.5vw;
+}
+
+.players{
+  width: 1.5%
+}
+
+.Hplayers{
+  width: 3%
+}
+
+.playTime{
+  width: 3.6%;
+}
+
+.rating{
+  width: 5.4%;
+}
+
+.minAge{
+  width: 2%;
+}
+
+.addBtn{
+  width: 3%;
+  padding-left: 0% !important;
+}
+
+.HaddBtn{
+  width: 6%;
+  padding-left: 0% !important;
+}
+
+.pgBtns{
+  background-color:#df5f5a;
+  border: 1px solid black;
+}
+
+.pgBtns:hover:not(.current-page-number){
+  background-color: #c54742;
+}
+
+.pages{
+  padding: 10px;
+}
+
+.current-page-number{
+  background-color: #8d8d8d;
+}
+
+.filter th{
+  font-size: medium;
+  font-weight: 600;
+}
+
+/*to help with resizing*/
+@media screen and (max-width: 1200px) {
+  .gameResult-box{
+    width: 100%;
+    overflow: scroll;
+  }
+}
+

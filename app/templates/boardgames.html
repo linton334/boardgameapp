@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<!--To show ALL board games-->
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-10" style="padding-top: 20px;">
+        <center>
+            <h1>Welcome to BoardGameNerd!</h1>
+        </center>
+    </div>
+    <div class="col-12 col-md-9 col-lg-7 col-xl-10" style="padding-top: 20px;">
+        <div class="card gameResult-box" style="border-radius: 15px;">
+            <!-- The head of the table -->
+            <table class="Hresults">
+                <tr>
+                    <th class="gameNum">Rank</th>
+                    <th class="line"></th>
+                    <th class="Himg">Image</th>
+                    <th class="line"></th>
+                    <th class="Htitle">Name</th>
+                    <th class="line"></th>
+                    <th class="Hplayers">Min/Max Players</th>
+                    <th class="line"></th>
+                    <th class="playTime">Avg Time</th>
+                    <th class="line"></th>
+                    <th class="playTime">Year</th>
+                    <th class="line"></th>
+                    <th class="rating">Avg Rating</th>
+                    <th class="line"></th>
+                    <th class="minAge">Min Age</th>
+                    <th class="line"></th>
+                    <th style="width: auto;">Categories</th>
+                    <th class="line"></th>
+                    <th class="HaddBtn">Add to Collection</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- Display each board game result -->
+    {% for game in data.items %}
+    <div class="col-12 col-md-9 col-lg-7 col-xl-10" style="padding-top: 20px;">
+        <div class="card gameResult-box" style="border-radius: 15px;">
+            <table class="results">
+                <tr>
+                    <td class="gameNum">{{ game.id }}</td>
+                    <td class="line"></td>
+                    <td class="img"><img src={{ game.imageURL }} alt={{ game.title }}></td>
+                    <td class="line"></td>
+                    <td class="title">{{ game.title }}</td>
+                    <td class="line"></td>
+                    <td class="players">{{ game.minPlayers }}</td>
+                    <td class="line"></td>
+                    <td class="players">{{ game.maxPlayers }}</td>
+                    <td class="line"></td>
+                    <td class="playTime">{{ game.playTime }}</td>
+                    <td class="line"></td>
+                    <td class="playTime">{{ game.releaseYear }}</td>
+                    <td class="line"></td>
+                    <td class="rating">{{ game.rating }}</td>
+                    <td class="line"></td>
+                    <td class="minAge">{{ game.minAge }}</td>
+                    <td class="line"></td>
+                    <td class="">{{ game.category }}</td>
+                    {% if current_user.is_authenticated %}
+                    <td class="addBtn">
+                        <form action="/add/{{ game.id }}" method="post">
+                            <button type="submit" name="gameAdd" value="+" class="btn btn-orange gradient-custom-4">+</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+            </table>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- For the page navigation buttons -->
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="pages">
+        {% if data.has_prev %}
+            <a class="btn pgBtns text-body prevBtn page-number" href="{{ url_for('boardgame', page=data.prev_num) }}"><<</a>
+        {% endif %}
+
+        {% for pgnumber in data.iter_pages() %}
+            {% if pgnumber == None %}
+                ...
+            {% elif data.page != pgnumber %}
+                <a class="btn pgBtns text-body page-number" href="{{ url_for('boardgame', page=pgnumber) }}">{{ pgnumber }}</a>
+            {% else %}
+                <div class='current-page-number btn pgBtns text-body'>{{ pgnumber }}</div>
+            {% endif %}
+        {% endfor %}
+
+        {% if data.has_next %}
+            <a class='btn pgBtns text-body' href="{{ url_for('boardgame', page=data.next_num) }}"> >> </a>
+        {% endif %}
+    </div>
+</div>
+<script src="../static/addtoCol.js"></script>
+{% endblock %}
