@@ -1,7 +1,5 @@
-body{
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
+.profile{
+  min-height: 86vh;
 }
 
 .bg-pink{
@@ -233,6 +231,11 @@ body{
 
 footer{   
   display: flex;
+}
+
+.profileFooter{
+  bottom: 0;
+  width: 100%;
 }
 
 .row{
