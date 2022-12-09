@@ -16,7 +16,7 @@ def add_to_collection(game_id):
     user = current_user
     game = models.boardGame.query.filter_by(id = game_id).first()
     user.boardGames.append(game)
-    print("game appended")
+    app.logger.info('%s added %s', user.username, game.title)
     db.session.commit()
     return redirect("/profile")
 
@@ -30,7 +30,7 @@ def login():
 @app.route('/login', methods=['POST'])
 def login_post():
     if current_user.is_authenticated:
-        print("hi")
+        app.logger.info('%s is already logged in', current_user.username)
         return redirect('/profile')
     form=RegisterForm()
     loginForm=LoginForm()
@@ -42,11 +42,13 @@ def login_post():
         userUsername = models.userAccount.query.filter_by(username=username).first() # if this returns a user, then the username already exists in database
         if userEmail: # if a user is found, we want to redirect back to signup page so user can try again
             flash('Email address already exists')
+            app.logger.info('Email already in database')
             return render_template('login.html', title='Login', form=form, loginForm=loginForm, current_user=current_user)
 
 
         elif userUsername: # if a user is found, we want to redirect back to signup page so user can try again
             flash('Username already exists')
+            app.logger.info('Username already in database')
             return render_template('login.html', title='Login', form=form, loginForm=loginForm, current_user=current_user)
 
         else:
@@ -55,6 +57,7 @@ def login_post():
             # add the new user to the database
             db.session.add(new_user)
             db.session.commit()
+            app.logger.info('%s created an account', new_user.username)
             flash('Account Created!')
             return redirect('/login')
 
@@ -66,6 +69,7 @@ def login_post():
         flash('Incorrect Login')
         return redirect('/login')
     login_user(user, remember=remember)
+    app.logger.info('%s logged in successfully', user.username)
     return redirect('/profile')
 
 @app.route('/profile')
@@ -86,6 +90,7 @@ def passChange():
         flash('Incorrect Current Password')
         return redirect('/profile')
     current_user.password=generate_password_hash(changePass, method='sha256')
+    app.logger.info('%s changed their password', current_user.username)
     flash("Password changed!")
     db.session.commit()
     return redirect('/profile')
@@ -97,12 +102,14 @@ def removeGame(game_id):
     game = models.boardGame.query.filter_by(id=game_id).first()
     if game:
         current_user.boardGames.remove(game)
+        app.logger.info('%s removed %s', current_user.username, game.title)
         db.session.commit()
     return redirect("/profile")
 
 @app.route('/logout')
 @login_required
 def logout():
+    app.logger.info('%s logged out successfully', current_user.username)
     logout_user()
     return redirect('/')
 
