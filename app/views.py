@@ -95,8 +95,9 @@ def passChange():
 @login_required
 def removeGame(game_id):
     game = models.boardGame.query.filter_by(id=game_id).first()
-    current_user.boardGames.remove(game)
-    db.session.commit()
+    if game:
+        current_user.boardGames.remove(game)
+        db.session.commit()
     return redirect("/profile")
 
 @app.route('/logout')
