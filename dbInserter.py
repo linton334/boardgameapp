@@ -16,6 +16,7 @@ with open("goodBGDataset.csv") as file:
             rating=float(row[5]),
             imageURL=row[6],
             minAge=int(row[7]),
-            category=row[8])
+            category=row[8],
+            saves=0)
         db.session.add(p)
     db.session.commit()

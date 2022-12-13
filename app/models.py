@@ -38,4 +38,4 @@ class boardGame(db.Model):
     imageURL = db.Column(db.String())
     minAge = db.Column(db.Integer)
     category = db.Column(db.String())
-
+    saves = db.Column(db.Integer)

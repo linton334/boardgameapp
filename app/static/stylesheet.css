@@ -110,6 +110,11 @@
   padding: 10px;
 }
 
+.HgameResult-box{
+  box-shadow: rgba(0, 0, 0, 0.15)0px 2px 8px;
+  padding: 10px;
+}
+
 .gameResult-box img{
   width: 80px;
   height: 80px;
@@ -148,7 +153,7 @@
 }
 
 .gameNum{
-  width: 2vw;
+  width: 4%;
 }
 
 .img{
@@ -183,6 +188,10 @@
 
 .rating{
   width: 5.4%;
+}
+
+.saves{
+  width: 5.6%;
 }
 
 .minAge{
@@ -221,9 +230,19 @@
   font-weight: 600;
 }
 
+.starImg{
+  width: 30px;
+  height: 30px;
+}
+
+
 /*to help with resizing*/
 @media screen and (max-width: 1200px) {
   .gameResult-box{
+    width: 100%;
+    overflow: scroll;
+  }
+  .HgameResult-box{
     width: 100%;
     overflow: scroll;
   }
@@ -241,3 +260,5 @@ footer{
 .row{
   margin: auto;
 }
+
+

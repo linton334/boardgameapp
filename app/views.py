@@ -15,7 +15,13 @@ def boardgame():
 def add_to_collection(game_id):
     user = current_user
     game = models.boardGame.query.filter_by(id = game_id).first()
+    for userGames in user.boardGames:
+        if userGames.title == game.title:
+            app.logger.info("%s already in %s's collection", game.title, user.username)
+            flash("Game already in collection!")
+            return redirect("/")
     user.boardGames.append(game)
+    game.saves+=1
     app.logger.info('%s added %s', user.username, game.title)
     db.session.commit()
     return redirect("/profile")
@@ -103,6 +109,7 @@ def removeGame(game_id):
     if game:
         current_user.boardGames.remove(game)
         app.logger.info('%s removed %s', current_user.username, game.title)
+        game.saves-=1
         db.session.commit()
     return redirect("/profile")
 

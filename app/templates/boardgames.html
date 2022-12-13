@@ -5,10 +5,24 @@
     <div class="col-12 col-md-9 col-lg-7 col-xl-10" style="padding-top: 20px;">
         <center>
             <h1>Welcome to Bored Game Collector !</h1>
+            {% if current_user.is_authenticated == false%}
+                <h4>Login/Register to start adding to your collection!</h4>
+            {% endif %}
         </center>
     </div>
     <div class="col-12 col-md-9 col-lg-7 col-xl-10" style="padding-top: 20px;">
-        <div class="card gameResult-box" style="border-radius: 15px;">
+        <center>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        </center>
+    </div>
+    <div class="col-12 col-md-9 col-lg-7 col-xl-10" style="padding-top: 20px;">
+        <div class="card HgameResult-box" style="border-radius: 15px;">
             <!-- The head of the table -->
             <table class="Hresults">
                 <tr>
@@ -30,7 +44,11 @@
                     <th class="line"></th>
                     <th style="width: auto;">Categories</th>
                     <th class="line"></th>
-                    <th class="HaddBtn">Add to Collection</td>
+                    <th style="width: 40px;"><img class="starImg" src="../static/star-icon.png" alt="Thumbs up icon"></th>
+                    {% if current_user.is_authenticated %}
+                        <th class="line"></th>
+                        <th class="HaddBtn">Add to Collection</td>
+                    {% endif %}
                 </tr>
             </table>
         </div>
@@ -60,6 +78,8 @@
                     <td class="minAge">{{ game.minAge }}</td>
                     <td class="line"></td>
                     <td class="">{{ game.category }}</td>
+                    <td class="line"></td>
+                    <td class="saves">{{ game.saves }}</td>
                     {% if current_user.is_authenticated %}
                     <td class="addBtn">
                         <form action="/add/{{ game.id }}" method="post">
