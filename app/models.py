@@ -1,6 +1,8 @@
 from app import db,models
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
+from sqlalchemy import event
+import csv
 
 import sys
 if sys.version_info >= (3, 0):
@@ -39,3 +41,25 @@ class boardGame(db.Model):
     minAge = db.Column(db.Integer)
     category = db.Column(db.String())
     saves = db.Column(db.Integer)
+
+@event.listens_for(boardGame.__table__,'after_create')
+def populateDatabase(*args, **kwargs):
+    with open("goodBGDataset.csv") as file:
+        reader = csv.reader(file)
+        header = next(reader)
+
+        for i,row in enumerate(reader):
+            p = models.boardGame(
+                id=i+1,
+                title=row[0],
+                minPlayers=int(row[1]),
+                maxPlayers=int(row[2]),
+                playTime=int(row[3]),
+                releaseYear=int(row[4]),
+                rating=float(row[5]),
+                imageURL=row[6],
+                minAge=int(row[7]),
+                category=row[8],
+                saves=0)
+            db.session.add(p)
+        db.session.commit()
