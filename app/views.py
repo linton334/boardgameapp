@@ -24,7 +24,7 @@ def add_to_collection(game_id):
     game.saves+=1
     app.logger.info('%s added %s', user.username, game.title)
     db.session.commit()
-    return redirect("/profile")
+    return redirect("/")
 
 
 @app.route('/login')

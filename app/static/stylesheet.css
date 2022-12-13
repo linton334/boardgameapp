@@ -131,6 +131,7 @@
 .results{
   width: 100%;
 }
+
 .Hresults{
   width: 100%;
   border: 2px solid #df5f5a;
@@ -153,6 +154,7 @@
 }
 
 .gameNum{
+  min-width: 3em;
   width: 4%;
 }
 
@@ -161,41 +163,76 @@
 }
 
 .Himg{
+  min-width: 100px;
   width: 100px;
 }
 
 .title{
-  min-width: 115px;
+  min-width: 13.4em;
   width: 20vw;
 }
 
 .Htitle{
-  min-width: 115px;
+  min-width: 12em;
   width: 19.5vw;
 }
 
 .players{
+  min-width: 2.2em;
   width: 1.5%
 }
 
 .Hplayers{
+  min-width: 2em;
   width: 3%
 }
 
 .playTime{
+  min-width: 3.6em;
+  width: 3.6%;
+}
+
+.HplayTime{
+  min-width: 3.4em;
   width: 3.6%;
 }
 
 .rating{
+  min-width: 5em;
   width: 5.4%;
 }
 
-.saves{
-  width: 5.6%;
+.Hrating{
+  min-width: 4.5em;
+  width: 5.4%;
 }
 
 .minAge{
+  min-width: 2.7em;
   width: 2%;
+}
+
+.HminAge{
+  min-width: 2.5em ;
+  width: 2%;
+}
+
+.saves{
+  min-width: 2.2em;
+  width: 5.6%;
+}
+
+.Hsaves{
+  min-width: 2em;
+  width: 5.6%;
+}
+
+.categories{
+  min-width: 20em;
+}
+
+.Hcategories{
+  min-width: 18.3em;
 }
 
 .addBtn{
@@ -235,17 +272,29 @@
   height: 30px;
 }
 
-
 /*to help with resizing*/
 @media screen and (max-width: 1200px) {
   .gameResult-box{
     width: 100%;
-    overflow: scroll;
   }
   .HgameResult-box{
     width: 100%;
+  }
+  
+}
+
+@media screen and (max-width:1000px) {
+  .card{
+    width: fit-content;
+  }
+  .allResults{
     overflow: scroll;
   }
+}
+
+.allResults{
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 footer{   
