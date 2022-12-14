@@ -36,7 +36,7 @@ def login():
 @app.route('/login', methods=['POST'])
 def login_post():
     if current_user.is_authenticated:
-        app.logger.info('%s is already logged in', current_user.username)
+        app.logger.warning('%s tried accessing /login when logged in.', current_user.username)
         return redirect('/profile')
     form=RegisterForm()
     loginForm=LoginForm()
