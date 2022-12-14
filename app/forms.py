@@ -5,8 +5,6 @@ from wtforms import PasswordField
 from wtforms import BooleanField
 from wtforms.validators import DataRequired, Length
 
-
-
 class RegisterForm(FlaskForm):
     username = StringField('Enter Username', validators=[DataRequired(), Length(max = 100)])
     email = EmailField('Enter Email', validators=[DataRequired(), Length(max = 150)])

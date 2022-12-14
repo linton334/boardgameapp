@@ -4,13 +4,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import event
 import csv
 
-import sys
-if sys.version_info >= (3, 0):
-    enable_search = False
-else:
-    enable_search = True
-    import flask_whooshalchemy as whooshalchemy
-
 user_game = db.Table('user_game',
     db.Column('user_id', db.Integer, db.ForeignKey('useraccounts.id'), primary_key=True),
     db.Column('game_id', db.Integer, db.ForeignKey('boardgames.id'), primary_key=True)
@@ -42,6 +35,7 @@ class boardGame(db.Model):
     category = db.Column(db.String())
     saves = db.Column(db.Integer)
 
+#For when the database needs to be reset so the database is automatically repopulated with board games from CSV file
 @event.listens_for(boardGame.__table__,'after_create')
 def populateDatabase(*args, **kwargs):
     with open("goodBGDataset.csv") as file:
